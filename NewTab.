@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Game Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #game-container {
+            width: 80%;
+            height: 500px;
+            margin: 20px auto;
+            border: 2px solid black;
+            position: relative;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #fullscreen-btn {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to My Game Hub</h1>
+    <button class="button" onclick="loadGame('game1.html')">Game 1</button>
+    <button class="button" onclick="loadGame('game2.html')">Game 2</button>
+    
+    <div id="game-container">
+        <iframe id="game-frame"></iframe>
+    </div>
+    <button id="fullscreen-btn" class="button" onclick="toggleFullscreen()">Fullscreen</button>
+
+    <script>
+        function loadGame(gameUrl) {
+            document.getElementById('game-frame').src = gameUrl;
+            document.getElementById('fullscreen-btn').style.display = 'block';
+        }
+
+        function toggleFullscreen() {
+            let iframe = document.getElementById('game-frame');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) {
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
